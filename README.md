@@ -4,3 +4,6 @@
 - Deadline: May 5, 11:59 pm
 
 - Add your contributions here
+Nick Kenney : helped delta coefficients 
+Connor Gibbons : contributed to delta coefficients and formants 
+Wellan Sok: contributed to delta coefficients and formants 
