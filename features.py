@@ -98,11 +98,17 @@ class FeatureExtractor():
         """
         
         """ADD your code here"""
-        #
-        #
-        #
-        #
-        return [1] #Dummy value
+        # Compute formants' frequencies and bandwidths for the given window
+        freqs, bandwidths = self._compute_formants(window)
+        
+        # Define the bins for the histogram
+        bins = np.linspace(0, 5500, 10)  # 40 bins from 0 to 5500 Hz
+        
+        # Compute the histogram of the frequencies in the fixed bins
+        hist, _ = np.histogram(freqs, bins=bins)
+        
+        return hist
+        # return [1] #Dummy value
 
     
     def _compute_mfcc(self, window):
