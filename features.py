@@ -149,11 +149,24 @@ class FeatureExtractor():
         
         """
         """ADD your code here"""
-        #
-        #
-        #
-        #
-        return [1]
+        mfccs = self._compute_mfcc(window)
+        sumArray = []
+        print(mfccs)
+        denomVals = []
+        for n in [1..N]:
+            denomVals.append(pow(n,2))
+        denominator = 2*(np.sum(denomVals))
+
+        for t in [2..len(mfccs)-3]:
+            valsArray = np.array()
+            for n in [1..N]:
+                preT = np.array(mfccs[t-n])
+                postT = np.array(mfccs[t+n])
+                valsArray.append(np.array(2*(postT-preT)))
+            sumArray.append(np.sum(valsArray))
+        sumArray = sumArray.flatten()
+        print(sumArray/denominator)
+        return sumArray/denominator 
         
     def extract_features(self, window, debug=True):
         """
