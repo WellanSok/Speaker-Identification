@@ -57,7 +57,7 @@ print("Found data for {} speakers : {}".format(len(class_names), ", ".join(class
 # -----------------------------------------------------------------------------
 
 # Update this depending on how you compute your features
-n_features = 1101
+n_features = 984
 # default value
 # n_features = 1077
 print("Extracting features and labels for {} audio windows...".format(data.shape[0]))
@@ -73,8 +73,8 @@ for i, window_with_timestamp_and_label in enumerate(data):
     window = window_with_timestamp_and_label[1:-1]
     # label = data[i][-1]
     label = window_with_timestamp_and_label[-1]
-    # if label > 1:
-    #     print("break here")
+    if label > 1:
+        break
     print(label)
     x = feature_extractor.extract_features(window)
     if len(x) != X.shape[1]:

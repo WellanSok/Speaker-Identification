@@ -150,22 +150,27 @@ class FeatureExtractor():
         """
         """ADD your code here"""
         mfccs = self._compute_mfcc(window)
-        sumArray = []
-        print(mfccs)
+        #print(f"Length of mfcc: {len(mfccs)}\n")
+        sumArray = np.array([])
         denomVals = []
-        for n in [1..N]:
+        for n in range(1,N+1):
+            #print(f"n(denom):{n}")
             denomVals.append(pow(n,2))
-        denominator = 2*(np.sum(denomVals))
+        denominator = 2*(np.sum(np.array(denomVals)))
 
-        for t in [2..len(mfccs)-3]:
-            valsArray = np.array()
-            for n in [1..N]:
+        for t in range(2,len(mfccs)-2):
+            valsArray = np.array([])
+            for n in range(1,N+1):
                 preT = np.array(mfccs[t-n])
                 postT = np.array(mfccs[t+n])
-                valsArray.append(np.array(2*(postT-preT)))
-            sumArray.append(np.sum(valsArray))
-        sumArray = sumArray.flatten()
-        print(sumArray/denominator)
+                valsArray = np.append(valsArray,np.array(2*(postT-preT)))
+            retArray = np.array([0,0,0,0,0,0,0,0,0,0,0,0,0])
+            for val in valsArray:
+                retArray = retArray+val
+            sumArray = np.append(sumArray,retArray)
+        #print(f"Length of sumArray (pre flattened): {sumArray.size}\n")
+        sumArray = np.array(sumArray).flatten()
+        #print(f"Length of sumArray: {sumArray.size}\n")
         return sumArray/denominator 
         
     def extract_features(self, window, debug=True):
