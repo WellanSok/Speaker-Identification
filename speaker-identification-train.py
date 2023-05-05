@@ -73,9 +73,9 @@ for i, window_with_timestamp_and_label in enumerate(data):
     window = window_with_timestamp_and_label[1:-1]
     # label = data[i][-1]
     label = window_with_timestamp_and_label[-1]
-    if label > 1:
-        break
-    print(label)
+    #if label > 1:
+    #    break
+    #print(label)
     x = feature_extractor.extract_features(window)
     if len(x) != X.shape[1]:
         print("Received feature vector of length {}. Expected feature vector of length {}.".format(len(x), X.shape[1]))

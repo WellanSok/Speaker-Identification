@@ -50,7 +50,7 @@ def reformat_csv(filename, outfile):
     pd.DataFrame(sliced_data_np).to_csv("data/" + outfile, header=False)
 
 def main():
-    input_filename = 'speaker-data-Gibby-0.wav'
+    input_filename = 'nickTestData1.wav'
     if input_filename[-3:] != 'wav':
         print('WARNING!! Input File format should be *.wav')
         sys.exit()

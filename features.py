@@ -99,8 +99,11 @@ class FeatureExtractor():
         
         """ADD your code here"""
         # Compute formants' frequencies and bandwidths for the given window
-        freqs, bandwidths = self._compute_formants(window)
-        
+        formants = self._compute_formants(window)
+        if(type(formants) is tuple):
+            freqs = formants[0]
+        else:
+            freqs = formants
         # Define the bins for the histogram
         bins = np.linspace(0, 5500, 10)  # 10 bins from 0 to 5500 Hz
         
@@ -182,14 +185,14 @@ class FeatureExtractor():
         
         """
         
-        x = []
+        x = np.array([])
         # x.append(self._compute_formant_features(window))
         # x.append(self._compute_delta_coefficients(window))
 
         x = np.append(x, self._compute_formant_features(window))
         x = np.append(x, self._compute_delta_coefficients(window))
         
-        return np.array(x)
+        return x
 
 
 if __name__ == "__main__":
